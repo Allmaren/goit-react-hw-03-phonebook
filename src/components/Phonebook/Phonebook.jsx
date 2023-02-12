@@ -19,7 +19,9 @@ export class Phonebook extends Component {
 
   componentDidMount() {
     const contacts = JSON.parse(localStorage.getItem('contact'));
-    this.setState({ contacts });
+    if (contacts && contacts.length) {
+      this.setState({ contacts });
+    }
   }
 
   componentDidUpdate() {
