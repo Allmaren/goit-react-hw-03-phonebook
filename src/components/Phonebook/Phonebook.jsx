@@ -72,6 +72,7 @@ export class Phonebook extends Component {
   render() {
     const { addContact, removeContact } = this;
     const items = this.getFilteredContacts();
+    const isEmpty = Boolean(items.length);
 
     return (
       <>
@@ -83,8 +84,10 @@ export class Phonebook extends Component {
           <Block>
             <TitleContact>Contacts</TitleContact>
             <Filter inputValue={this.handleFilter} />
-            <ContactList removeContact={removeContact} items={items} />
-            <NoContacts>No contacts in phonebooks</NoContacts>
+            {isEmpty && (
+              <ContactList removeContact={removeContact} items={items} />
+            )}
+            {!isEmpty && <NoContacts>No contacts in phonebooks</NoContacts>}
           </Block>
         </Wrapper>
       </>
